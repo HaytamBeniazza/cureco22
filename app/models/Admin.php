@@ -3,15 +3,16 @@
     class Admin {
 
         private $db;
+        public $results;
 
         public function __construct(){
           $this->db = new Database;
         }
 
         public function getProduct() {
-            $this->db->query('SELECT * FROM `product`');
-            $results = $this->db->resultSet();
-            return $results;
+          $results = $this->db->query('SELECT * FROM `product`');
+          
+          return $results=$this->db->resultSet();
         }
 
 
@@ -31,7 +32,14 @@
       
         }
 
-        public function delete() {
+        public function delete($idproduct) {
+          $this->db->query('DELETE FROM `product` WHERE `product`.`idproduct` = :idproduct');
+          $this->db->bind(':idproduct', $idproduct);
+          if ($this->db->execute()) {
+              return true;
+          } else {
+              return false;
+          }
 
         }
 
@@ -39,4 +47,45 @@
 
         }
 
+        public function sort($data) {
+          // if($data === 'price_min'){
+          //   echo 'price min baby';
+          //   die('min');
+          // }
+          // if($data === 'price_max'){
+          //   echo 'price max baby';
+          // }
+          // if($data === 'date_new'){
+          //   echo 'date min baby';
+          // }
+          // if($data === 'date_old'){
+          //   echo 'date old baby';
+          // }
+//die(gettype($data['select']));
+
+    switch ($data['select']):
+        case 'price_min':
+          $results = $this->db->query('SELECT * FROM `product` ORDER BY `product`.`price` ASC');
+           $results=$this->db->resultSet();
+          die(var_dump($results));
+            break;
+        case 'price_max':
+          $results = $this->db->query('SELECT * FROM `product` ORDER BY `product`.`price` DESC');
+          $results=$this->db->resultSet();
+          die(print_r($results));
+            break;
+        case 'date_new':
+          $results = $this->db->query('SELECT * FROM `product` ORDER BY `product`.`add_date` ASC');
+          $results=$this->db->resultSet();
+            break;
+        case 'date_old':
+          $results = $this->db->query('SELECT * FROM `product` ORDER BY `product`.`add_date` DESC');
+          $results=$this->db->resultSet();
+          die(print_r($results));
+            break;
+        default:
+            echo "the default message displayed";
+    endswitch;
+
+          }
     }

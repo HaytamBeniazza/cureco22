@@ -1,7 +1,8 @@
 <?php
   class Pages extends Controller {
+    protected $pagesModel;
     public function __construct(){
-     
+      $this->pagesModel = $this->model('Admin');
     }
     
     public function index(){
@@ -13,7 +14,11 @@
     }
 
     public function product(){
-      $this->view('pages/product');
+      $product = $this->pagesModel->getProduct();
+      $data = [
+          'product' => $product
+      ];
+      $this->view('pages/product',$data);
     }
 
     public function contact(){

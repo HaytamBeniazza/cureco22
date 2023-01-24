@@ -6,23 +6,25 @@
         <h2>Add Product</h2>
         <p>Enter The Product Details</p>
         <form action="<?php echo URLROOT; ?>/admins/add" method="post">
-          <div class="form-group">
-            <label for="title">Title: <sup>*</sup></label>
-            <input type="text" name="title" class="form-control form-control-lg">
-          </div>
-          <div class="form-group">
-            <label for="price">Price: <sup>*</sup></label>
-            <input type="number" name="price" class="form-control form-control-lg">
-          </div>
-          <div class="form-group">
-            <label for="quantity">Quantity: <sup>*</sup></label>
-            <input type="number" name="quantity" class="form-control form-control-lg">
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <input type="submit" value="add" class="btn btn-success btn-block">
+        <div id="hamel">
+            <div class="form-group">
+              <label for="title">Title: <sup>*</sup></label>
+              <input type="text" name="title[]" class="form-control form-control-lg">
             </div>
+            <div class="form-group">
+              <label for="price">Price: <sup>*</sup></label>
+              <input type="number" name="price[]" class="form-control form-control-lg">
+            </div>
+            <div class="form-group">
+              <label for="quantity">Quantity: <sup>*</sup></label>
+              <input type="number" name="quantity[]" class="form-control form-control-lg">
+            </div>
+          </div>
+            <button onclick="return harazid()" class="btn btn-outline-primary mt-2 mb-2">&plus;</button>
+            <div class="row mt-2">
+              <div class="col">
+                <input type="submit" value="Submit" class="btn btn-primary btn-block">
+              </div>
           </div>
         </form>
       </div>
