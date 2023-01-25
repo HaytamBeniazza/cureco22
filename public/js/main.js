@@ -1,6 +1,10 @@
 function harazid(){
-    document.getElementById('hamel').innerHTML+= `
+    document.getElementById('alae').innerHTML+= `
     <h3>add new product</h3>
+    <div class="form-group">
+    <label for="image">Image: <sup>*</sup></label>
+    <input type="file" name="image[]" class="form-control form-control-lg">
+  </div>
     <div class="form-group">
     <label for="title">Title: <sup>*</sup></label>
     <input type="text" name="title[]" class="form-control form-control-lg">

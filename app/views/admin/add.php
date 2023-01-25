@@ -6,7 +6,11 @@
         <h2>Add Product</h2>
         <p>Enter The Product Details</p>
         <form action="<?php echo URLROOT; ?>/admins/add" method="post">
-        <div id="hamel">
+        <div id="alae">
+            <div class="form-group">
+              <label for="iamge">Image: <sup>*</sup></label>
+              <input type="file" name="image[]" class="form-control form-control-lg">
+            </div>
             <div class="form-group">
               <label for="title">Title: <sup>*</sup></label>
               <input type="text" name="title[]" class="form-control form-control-lg">
