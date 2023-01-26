@@ -61,7 +61,7 @@
         <!-- <span class="input-group-text border-0" id="search-addon">
          
         </span> -->
-        <button type="submit"> <i class="fas fa-search"></i></button>
+        <button type="submit"> <i class="fas fa-search btn"></i></button>
         </form>
       </div>
 
@@ -88,7 +88,7 @@
     foreach ($data['product'] as $key) {
     ?>
       <tr>
-        <td><?= $key->image ?></td>
+        <td><img style="width: 30px;" src="<?php echo URLROOT?>/uploads/<?= $key->image ?>" alt=""></td>
         <td><?= $key->title ?></td>
         <td><?= $key->price ?></td>
         <td><?= $key->quantity ?></td>

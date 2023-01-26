@@ -18,41 +18,25 @@
           'email' => trim($_POST['email']),
           'password' => trim($_POST['password']),
           'confirm_password' => trim($_POST['confirm_password']),
-          'email_err' => '',
-          'password_err' => '',
-          'confirm_password_err' => ''
         ];
 
         // Validate Email
-        if(empty($data['email'])){
-          $data['email_err'] = 'Pleae enter email';
-        } else {
+      
+       
           // Check email
           if($this->userModel->findUserByEmail($data['email'])){
-            $data['email_err'] = 'Email is already taken';
+
+            flash('email_dej', 'Email is already taken','alert alert-danger');
+            redirect('users/register');exit;
           }
-        }
+      
 
-        // Validate Name
+        
 
-        // Validate Password
-        if(empty($data['password'])){
-          $data['password_err'] = 'Pleae enter password';
-        } elseif(strlen($data['password']) < 6){
-          $data['password_err'] = 'Password must be at least 6 characters';
-        }
-
-        // Validate Confirm Password
-        if(empty($data['confirm_password'])){
-          $data['confirm_password_err'] = 'Pleae confirm password';
-        } else {
-          if($data['password'] != $data['confirm_password']){
-            $data['confirm_password_err'] = 'Passwords do not match';
-          }
-        }
+       
 
         // Make sure errors are empty
-        if(empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])){
+       
           // Validated
           
           // Hash Password
@@ -66,10 +50,7 @@
             die('Something went wrong');
           }
 
-        } else {
-          // Load view with errors
-          $this->view('users/register', $data);
-        }
+       
 
       } else {
         // Init data
@@ -92,36 +73,20 @@
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // Process form
         // Sanitize POST data
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+       
         
         // Init data
         $data =[
           'email' => trim($_POST['email']),
           'password' => trim($_POST['password']),
-          'email_err' => '',
-          'password_err' => '',
         ];
 
-        // Validate Email
-        if(empty($data['email'])){
-          $data['email_err'] = 'Pleae enter email';
-        }
+      
 
-        // Validate Password
-        if(empty($data['password'])){
-          $data['password_err'] = 'Please enter password';
-        }
-
-        // Check for user/email
-        if($this->userModel->findUserByEmail($data['email'])){
-          // User found
-        } else {
-          // User not found
-          $data['email_err'] = 'No user found';
-        }
+        
 
         // Make sure errors are empty
-        if(empty($data['email_err']) && empty($data['password_err'])){
+        
           // Validated
           // Check and set logged in user
           $loggedInUser = $this->userModel->login($data['email'], $data['password']);
@@ -130,27 +95,18 @@
             // Create Session
             $this->createUserSession($loggedInUser);
           } else {
-            $data['password_err'] = 'Password incorrect';
-
-            $this->view('users/login', $data);
+            flash('login_err', 'information incorrect','alert alert-danger');
+            $this->view('users/login');
           }
-        } else {
-          // Load view with errors
-          $this->view('users/login', $data);
-        }
+       
 
 
       } else {
         // Init data
-        $data =[    
-          'email' => '',
-          'password' => '',
-          'email_err' => '',
-          'password_err' => '',        
-        ];
+
 
         // Load view
-        $this->view('users/login', $data);
+        $this->view('users/login');
       }
     }
 

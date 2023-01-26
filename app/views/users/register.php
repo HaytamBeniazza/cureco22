@@ -1,11 +1,14 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
-<?php require APPROOT . '/views/inc/navbar.php'; ?>
+<?php require APPROOT . '/views/inc/navbar.php';
+            flash('email_dej');
+            ?>
+
   <div class="row mb-5">
     <div class="col-md-6 mx-auto">
       <div class="card card-body bg-light mt-5">
         <h2>Create An Account</h2>
         <p>Please fill out this form to register with us</p>
-        <form action="<?php echo URLROOT; ?>/users/register" id="form" method="post" onclick="register();">
+        <form action="<?php echo URLROOT; ?>/users/register" id="form" method="post" >
           <div class="form-group">
             <label for="email">Email: <sup>*</sup></label>
             <input type="email" name="email" id="email" class="form-control form-control-lg">
@@ -24,7 +27,7 @@
 
           <div class="row">
             <div class="col mb-2 mt-2">
-              <input type="submit" value="Register" class="btn btn-primary btn-block" name="submit" onclick="register();">
+              <button type="button" id="submit-btn" class="btn btn-primary btn-block">Submit</button>
             </div>
             <div class="col mb-2 mt-2">
               <a href="<?php echo URLROOT; ?>/users/login" class="btn btn-light btn-block">Have an account? Login</a>
@@ -34,4 +37,7 @@
       </div>
     </div>
   </div>
+
+  <script src="<?php echo URLROOT; ?>/js/validate.js"></script>
+
 <?php require APPROOT . '/views/inc/footer.php'; ?>

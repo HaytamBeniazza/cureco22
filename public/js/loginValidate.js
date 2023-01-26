@@ -2,19 +2,16 @@
 const form = document.querySelector('form');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
 const submit = document.getElementById('submit-btn');
 
 submit.addEventListener('click', (e) => {
-    register();
+    login();
 });
 
-function register() {
+function login() {
     let count = 0;
     const emailValue =  email.value.trim();
     const passwordValue = password.value.trim();
-    const password2Value = password2.value.trim();
-
     if(emailValue === '') {
         setErrorFor(email, 'Email cannot be blank');
     }else {
@@ -22,21 +19,11 @@ function register() {
     }
     if(passwordValue === '') {
         setErrorFor(password, 'Password cannot be blank');
-    }else if(passwordValue.length < 6){
-        setErrorFor(password, 'Enter a longer password');
     }else{ 
         count++;
     }
-    if(password2Value === '') {
-        setErrorFor(password2, 'Confirm Password cannot be blank');
-    }else if(passwordValue !== password2Value) {
-        setErrorFor(password2, 'Passwords don\'t match');
-    }else{
-        count++;
-    }
-
     console.log(count)
-    if (count === 3) {
+    if (count === 2) {
         console.log('all')
         form.submit()
     }

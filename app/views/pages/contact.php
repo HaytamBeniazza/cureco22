@@ -3,7 +3,7 @@
 <div class="container py-1">
 
   <!-- Bootstrap 5 starter form -->
-  <form id="contactForm">
+  <form id="contactForm" >
 
     <!-- Name input -->
     <div class="mb-3">
@@ -29,6 +29,7 @@
     </div>
 
   </form>
+
 
 </div>
 

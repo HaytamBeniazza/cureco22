@@ -21,7 +21,7 @@ class Admins extends Controller
                 $tempname = $_FILES["image"]["tmp_name"][$i];
                 $folder = "./uploads/" . $filename;
                 $data = [
-                    'image' => $_FILES["image"]["name"][$i],
+                    'image' => $filename,
                     'title' => trim($_POST['title'][$i]),
                     'price' => trim($_POST['price'][$i]),
                     'quantity' => trim($_POST['quantity'][$i]),
